@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mobs - Minecraft Wiki</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .back-link {
+            background: #3a3a3a;
+            color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: 2px solid #4CAF50;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #4CAF50;
+            color: #1a1a1a;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        #searchBox {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            background: #2a2a2a;
+            color: #e0e0e0;
+            border: 2px solid #4CAF50;
+            border-radius: 6px;
+        }
+
+        #searchType {
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #4CAF50;
+            border-radius: 6px;
+            background: #2a2a2a;
+            color: #4CAF50;
+        }
+
+        #searchBtn {
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #4CAF50;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        #searchBtn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .mobs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .mob-card {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .mob-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.2);
+            border-left-color: #45a049;
+        }
+
+        .mob-image {
+            width: 100%;
+            height: 180px;
+            background: #1a1a1a;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .mob-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .mob-card h3 {
+            color: #4CAF50;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+
+        .mob-card p {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .mob-card strong {
+            color: #4CAF50;
+        }
+
+        #result {
+            text-align: center;
+            color: #e0e0e0;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐛 Minecraft Mobs</h1>
+            <a href="index.html" class="back-link">← Back to Wiki</a>
+        </div>
+
+        <div class="search-container">
+            <select id="searchType">
+                <option value="name">Search by Name</option>
+                <option value="dangerLevel">Search by Danger Level</option>
+            </select>
+            <input type="text" id="searchBox" placeholder="Search mobs...">
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <div id="mobsContainer" class="mobs-list"></div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Minecraft mobs data with accurate information
+        const mobs = [
+            { 
+                name: "Creeper", 
+                dangerLevel: "High", 
+                versionAdded: "1.0",
+                image: "Creeper.png",
+                page: "creeper.html"
+            },
+            { 
+                name: "Enderman", 
+                dangerLevel: "High", 
+                versionAdded: "1.8",
+                image: "https://minecraft.wiki/images/Enderman.png",
+                page: "enderman.html"
+            },
+            { 
+                name: "Zombie", 
+                dangerLevel: "Medium", 
+                versionAdded: "1.0",
+                image: "https://minecraft.wiki/images/Zombie_JE4_BE3.png",
+                page: "zombie.html"
+            },
+            { 
+                name: "Skeleton", 
+                dangerLevel: "Medium", 
+                versionAdded: "1.0",
+                image: "https://minecraft.wiki/images/Skeleton_JE5_BE3.png",
+                page: "skeleton.html"
+            },
+            { 
+                name: "Spider", 
+                dangerLevel: "Medium", 
+                versionAdded: "1.0",
+                image: "https://minecraft.wiki/images/Spider_JE4_BE3.png",
+                page: "spider.html"
+            },
+            { 
+                name: "Sheep", 
+                dangerLevel: "Low", 
+                versionAdded: "1.0",
+                image: "https://minecraft.wiki/images/Sheep_JE4_BE3.png",
+                page: "sheep.html"
+            },
+            { 
+                name: "Pig", 
+                dangerLevel: "Low", 
+                versionAdded: "1.0",
+                image: "https://minecraft.wiki/images/Pig_JE4_BE3.png",
+                page: "pig.html"
+            },
+            { 
+                name: "Wither", 
+                dangerLevel: "Extreme", 
+                versionAdded: "1.4",
+                image: "https://minecraft.wiki/images/Wither_JE3_BE2.png",
+                page: "wither.html"
+            }
+        ];
+
+        const searchBox = document.getElementById("searchBox");
+        const searchBtn = document.getElementById("searchBtn");
+        const searchType = document.getElementById("searchType");
+        const mobsContainer = document.getElementById("mobsContainer");
+        const resultDiv = document.getElementById("result");
+
+        function displayMobs(moboList) {
+            if (moboList.length === 0) {
+                mobsContainer.innerHTML = "";
+                resultDiv.innerHTML = "<p>No mobs found.</p>";
+                return;
+            }
+
+            resultDiv.innerHTML = "";
+            mobsContainer.innerHTML = moboList.map(mob => `
+                <a href="${mob.page}" class="mob-card">
+                    <div class="mob-image">
+                        <img src="${mob.image}" alt="${mob.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22%3E%3Crect fill=%22%232a2a2a%22 width=%22180%22 height=%22180%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2216%22 fill=%22%234CAF50%22%3E${mob.name}%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <h3>${mob.name}</h3>
+                    <p><strong>Danger Level:</strong> ${mob.dangerLevel}</p>
+                    <p><strong>Version Added:</strong> ${mob.versionAdded}</p>
+                </a>
+            `).join("");
+        }
+
+        function performSearch() {
+            const query = searchBox.value.trim().toLowerCase();
+            const type = searchType.value;
+
+            if (query === "") {
+                displayMobs(mobs);
+                return;
+            }
+
+            const filtered = mobs.filter(m => {
+                if (type === "name") {
+                    return m.name.toLowerCase().includes(query);
+                } else if (type === "dangerLevel") {
+                    return m.dangerLevel.toLowerCase().includes(query);
+                }
+                return false;
+            });
+
+            displayMobs(filtered);
+        }
+
+        // Display all mobs on page load
+        displayMobs(mobs);
+
+        // Search event listeners
+        searchBox.addEventListener("input", performSearch);
+        searchBtn.addEventListener("click", performSearch);
+        searchType.addEventListener("change", performSearch);
+    </script>
+
+</body>
+</html>

@@ -2,67 +2,106 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Character Search</title>
+    <title>Minecraft Wiki</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 30px;
-            background: #f4f4f4;
-        }
-
-        #searchBox {
-            padding: 10px;
-            width: 250px;
-            font-size: 16px;
-        }
-
-        #searchBtn {
-            padding: 10px 15px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .card {
-            margin-top: 20px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
             padding: 20px;
-            background: white;
-            border-radius: 8px;
-            width: 300px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
-        .card h2 {
-            margin-top: 0;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+            font-size: 2.5em;
+            margin: 0 0 20px 0;
+        }
+
+        .welcome {
+            background: #3a3a3a;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .welcome p {
+            margin: 0 0 10px 0;
+        }
+
+        .welcome p:last-child {
+            margin: 0;
+        }
+
+        .nav-section {
+            margin-top: 30px;
+        }
+
+        .nav-section h2 {
+            color: #4CAF50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+
+        .nav-links { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .nav-links a {
+            display: block;
+            background: #3a3a3a;
+            padding: 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #4CAF50;
+            color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>🎮 Minecraft Wiki</h1>
 
-    <h1>Character Search</h1>
+        <div class="welcome">
+            <p><strong>Welcome to the Minecraft Wiki!</strong></p>
+            <p>Explore comprehensive information about Minecraft mobs, versions, and more. Whether you're a beginner or an experienced player, find everything you need to know about the blocky world of Minecraft.</p>
+            <p>Use the navigation menu below to explore different sections of the wiki.</p>
+        </div>
 
-    <input type="text" id="searchBox" placeholder="Enter character name">
-    <button id="searchBtn">Search</button>
-
-    <div id="result"></div>
-
-    <script>
-        // Hardcoded character data
-        const characters = [
-            { name: "Aragon", class: "Warrior", level: 12, hp: 180 },
-            { name: "Lyra", class: "Mage", level: 15, hp: 120 },
-            { name: "Thorn", class: "Rogue", level: 10, hp: 140 },
-            { name: "Selene", class: "Archer", level: 14, hp: 150 }
-        ];
-
-        document.getElementById("searchBtn").addEventListener("click", () => {
-            const query = document.getElementById("searchBox").value.trim().toLowerCase();
-            const resultDiv = document.getElementById("result");
-
-            const found = characters.find(c => c.name.toLowerCase() === query);
-
-            if (found) {
-                resultDiv.innerHTML = `
-                    <div class="card">
-                        <h2>${found.name}</h2>
-                        <p><strong>Class:</strong> ${found.class}</p>
-                        <p><strong>Level
+        <div class="nav-section">
+            <h2>📚 Browse</h2>
+            <div class="nav-links">
+                <a href="mobs.html">🐛 Mobs</a>
+                <a href="versions.html">📦 Versions</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

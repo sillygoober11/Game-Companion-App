@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Creeper - Minecraft Wiki</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .back-link {
+            background: #3a3a3a;
+            color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: 2px solid #4CAF50;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #4CAF50;
+            color: #1a1a1a;
+        }
+
+        .mob-image {
+            width: 300px;
+            height: 300px;
+            background: #2a2a2a;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            float: right;
+            margin-left: 20px;
+            border: 2px solid #4CAF50;
+        }
+
+        .mob-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .content {
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+        .info-section h2 {
+            color: #4CAF50;
+            margin-top: 0;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            background: #3a3a3a;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #4CAF50;
+        }
+
+        .info-item strong {
+            color: #4CAF50;
+        }
+
+        p {
+            line-height: 1.8;
+            margin: 15px 0;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .search-bar-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .search-bar-input {
+            padding: 8px 12px;
+            width: 200px;
+            background: #2a2a2a;
+            color: #e0e0e0;
+            border: 2px solid #4CAF50;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: #2a2a2a;
+            border: 2px solid #4CAF50;
+            border-radius: 6px;
+            width: 220px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+        }
+
+        .search-suggestions.active {
+            display: block;
+        }
+
+        .search-suggestion-item {
+            padding: 10px 12px;
+            cursor: pointer;
+            color: #4CAF50;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #3a3a3a;
+            transition: all 0.2s ease;
+        }
+
+        .search-suggestion-item:hover {
+            background: #3a3a3a;
+            padding-left: 16px;
+        }
+
+        .search-suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            background: #2a2a2a;
+            border-top: 2px solid #4CAF50;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+            color: #b0b0b0;
+            font-size: 0.9em;
+        }
+
+        footer strong {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-bar-container">
+        <input type="text" class="search-bar-input" id="globalSearch" placeholder="Search pages...">
+        <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🐛 Creeper</h1>
+            <a href="mobs.html" class="back-link">← Back to Mobs</a>
+        </div>
+
+        <div class="mob-image">
+            <img src="Creeper.png" alt="Creeper" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%232a2a2a%22 width=%22300%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%234CAF50%22%3ECreeper%3C/text%3E%3C/svg%3E'">
+        </div>
+
+        <div class="content">
+            <div class="info-section">
+                <h2>Overview</h2>
+                <p>
+                    The Creeper is one of Minecraft's most iconic hostile mobs. Known for their explosive behavior, Creepers are tall, green, four-legged creatures with a blank, pixelated face. They are one of the first hostile mobs players encounter and are the primary reason many players lose their structures and items.
+                </p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Health:</strong> 10 (5 hearts)
+                </div>
+                <div class="info-item">
+                    <strong>Attack Damage:</strong> Explosion (varies)
+                </div>
+                <div class="info-item">
+                    <strong>First Appearance:</strong> Indev
+                </div>
+                <div class="info-item">
+                    <strong>Difficulty:</strong> High
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h2>Behavior</h2>
+                <p>
+                    Creepers spawn in darkness and are attracted to players from a distance. When a Creeper gets within 3 blocks of a player, they stop moving and begin their characteristic hissing sound before detonating. The explosion deals tremendous damage and destroys blocks in a blast radius, making Creepers one of the most destructive mobs in the game. They can also be damaged by explosions from other Creepers, leading to chain reactions.
+                </p>
+            </div>
+
+            <div class="info-section">
+                <h2>Drops</h2>
+                <p>
+                    When killed by a player, Creepers drop:
+                    <ul>
+                        <li>0-2 Gunpowder (used for crafting)
+                        <li>One music disc (if killed by a skeleton's arrow)
+                    </ul>
+                </p>
+            </div>
+
+            <div class="info-section">
+                <h2>Variants</h2>
+                <p>
+                    <strong>Charged Creeper:</strong> When struck by lightning, a Creeper becomes "charged" (indicated by a blue glow), causing its explosion to be approximately twice as powerful as a normal Creeper explosion.
+                </p>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <footer>
+        <strong>⚠️ AI Disclaimer:</strong> AI used to generate content. Please verify important information before relying on it. No personal information collected.
+    </footer>
+
+    <script>
+        const pages = [
+            { name: "Creeper", url: "creeper.html" },
+            { name: "Zombie", url: "zombie.html" },
+            { name: "Skeleton", url: "skeleton.html" },
+            { name: "Spider", url: "spider.html" },
+            { name: "Enderman", url: "enderman.html" },
+            { name: "Sheep", url: "sheep.html" },
+            { name: "Pig", url: "pig.html" },
+            { name: "Wither", url: "wither.html" },
+            { name: "Mobs", url: "mobs.html" },
+            { name: "Versions", url: "versions.html" },
+            { name: "Home", url: "index.html" }
+        ];
+
+        const searchInput = document.getElementById("globalSearch");
+        const searchSuggestions = document.getElementById("searchSuggestions");
+
+        searchInput.addEventListener("input", function() {
+            const query = this.value.toLowerCase().trim();
+            
+            if (query === "") {
+                searchSuggestions.classList.remove("active");
+                return;
+            }
+
+            const matches = pages.filter(page => 
+                page.name.toLowerCase().includes(query)
+            );
+
+            if (matches.length === 0) {
+                searchSuggestions.classList.remove("active");
+                return;
+            }
+
+            searchSuggestions.innerHTML = matches.map(page => `
+                <a href="${page.url}" class="search-suggestion-item">${page.name}</a>
+            `).join("");
+            searchSuggestions.classList.add("active");
+        });
+
+        document.addEventListener("click", function(e) {
+            if (e.target !== searchInput && !searchInput.contains(e.target)) {
+                searchSuggestions.classList.remove("active");
+            }
+        });
+    </script>
+</body>
+</html>

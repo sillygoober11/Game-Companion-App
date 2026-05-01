@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Versions - Minecraft Wiki</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .back-link {
+            background: #3a3a3a;
+            color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: 2px solid #4CAF50;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #4CAF50;
+            color: #1a1a1a;
+        }
+
+        .versions-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .version-card {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .version-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.2);
+            border-left-color: #45a049;
+        }
+
+        .version-card h3 {
+            color: #4CAF50;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+
+        .version-card p {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .version-card strong {
+            color: #4CAF50;
+        }
+
+        .mobs-added {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #3a3a3a;
+        }
+
+        .mobs-added strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .mobs-list {
+            font-size: 0.9em;
+            color: #b0b0b0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📦 Minecraft Versions</h1>
+            <a href="index.html" class="back-link">← Back to Wiki</a>
+        </div>
+
+        <div id="versionsContainer" class="versions-list"></div>
+    </div>
+
+    <script>
+        // Accurate Minecraft versions data with mob information
+        const versions = [
+            { 
+                version: "1.0 (Full Release)", 
+                releaseDate: "November 18, 2011",
+                description: "The official release of Minecraft to the public, establishing the core gameplay loop. Introduced the majority of early hostile mobs.",
+                mobsAdded: ["Creeper", "Zombie", "Skeleton", "Spider", "Sheep", "Pig"]
+            },
+            { 
+                version: "Beta 1.8", 
+                releaseDate: "September 2, 2011",
+                description: "Major beta update that introduced new biomes, terrain generation improvements, and new mobs.",
+                mobsAdded: ["Enderman"]
+            },
+            { 
+                version: "1.4.2 (Pretty Scary Update)", 
+                releaseDate: "October 25, 2012",
+                description: "The Pretty Scary Update brought Halloween-themed content and introduced the Wither boss mob. This was a major content expansion.",
+                mobsAdded: ["Wither"]
+            }
+        ];
+
+        const versionsContainer = document.getElementById("versionsContainer");
+
+        function displayVersions() {
+            versionsContainer.innerHTML = versions.map(v => `
+                <div class="version-card">
+                    <h3>Version ${v.version}</h3>
+                    <p><strong>Release Date:</strong> ${v.releaseDate}</p>
+                    <p>${v.description}</p>
+                    <div class="mobs-added">
+                        <strong>Mobs Added:</strong>
+                        <div class="mobs-list">${v.mobsAdded.join(", ")}</div>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        // Display all versions on page load
+        displayVersions();
+    </script>
+
+</body>
+</html>
